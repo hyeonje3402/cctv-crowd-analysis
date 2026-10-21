@@ -1,0 +1,35 @@
+# Python & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Model Weights (Large Files > 50MB-100MB)
+*.pt
+*.pth
+*.onnx
+*.engine
+
+# Video datasets and generated output videos
+videos/
+ez/
+hard/
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Output results (keep or ignore, ignoring heavy generated videos)
+*_result_video.mp4
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,124 @@
+[
+  {
+    "zone_id": "ZONE_01",
+    "file_name": "Hailuo_Video_Authentic CCTV footage, high a_567046910830706688.mp4",
+    "video_path": "ez\\Hailuo_Video_Authentic CCTV footage, high a_567046910830706688.mp4",
+    "total_duration_sec": 10.12,
+    "total_frames_analyzed": 11,
+    "max_person_count": 50,
+    "avg_person_count": 44.45,
+    "overall_status": "NORMAL",
+    "frames": [
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV footage, high a_567046910830706688.mp4",
+        "time_sec": 0.0,
+        "timestamp": "00:00",
+        "frame_idx": 0,
+        "person_count": 46,
+        "raw_density_sum": 46.45,
+        "status": "NORMAL"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV footage, high a_567046910830706688.mp4",
+        "time_sec": 1.0,
+        "timestamp": "00:01",
+        "frame_idx": 24,
+        "person_count": 47,
+        "raw_density_sum": 46.71,
+        "status": "NORMAL"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV footage, high a_567046910830706688.mp4",
+        "time_sec": 2.0,
+        "timestamp": "00:02",
+        "frame_idx": 48,
+        "person_count": 45,
+        "raw_density_sum": 45.28,
+        "status": "NORMAL"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV footage, high a_567046910830706688.mp4",
+        "time_sec": 3.0,
+        "timestamp": "00:03",
+        "frame_idx": 72,
+        "person_count": 50,
+        "raw_density_sum": 49.8,
+        "status": "NORMAL"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV footage, high a_567046910830706688.mp4",
+        "time_sec": 4.0,
+        "timestamp": "00:04",
+        "frame_idx": 96,
+        "person_count": 47,
+        "raw_density_sum": 47.27,
+        "status": "NORMAL"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV footage, high a_567046910830706688.mp4",
+        "time_sec": 5.0,
+        "timestamp": "00:05",
+        "frame_idx": 120,
+        "person_count": 41,
+        "raw_density_sum": 40.65,
+        "status": "NORMAL"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV footage, high a_567046910830706688.mp4",
+        "time_sec": 6.0,
+        "timestamp": "00:06",
+        "frame_idx": 144,
+        "person_count": 44,
+        "raw_density_sum": 44.31,
+        "status": "NORMAL"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV footage, high a_567046910830706688.mp4",
+        "time_sec": 7.0,
+        "timestamp": "00:07",
+        "frame_idx": 168,
+        "person_count": 44,
+        "raw_density_sum": 43.53,
+        "status": "NORMAL"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV footage, high a_567046910830706688.mp4",
+        "time_sec": 8.0,
+        "timestamp": "00:08",
+        "frame_idx": 192,
+        "person_count": 43,
+        "raw_density_sum": 43.06,
+        "status": "NORMAL"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV footage, high a_567046910830706688.mp4",
+        "time_sec": 9.0,
+        "timestamp": "00:09",
+        "frame_idx": 216,
+        "person_count": 41,
+        "raw_density_sum": 40.61,
+        "status": "NORMAL"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV footage, high a_567046910830706688.mp4",
+        "time_sec": 10.0,
+        "timestamp": "00:10",
+        "frame_idx": 240,
+        "person_count": 41,
+        "raw_density_sum": 41.35,
+        "status": "NORMAL"
+      }
+    ]
+  }
+]

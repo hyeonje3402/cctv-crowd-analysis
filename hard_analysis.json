@@ -1,0 +1,490 @@
+[
+  {
+    "zone_id": "ZONE_01",
+    "file_name": "Hailuo_Video_Authentic CCTV security camera_567019781048918023.mp4",
+    "video_path": "hard\\Hailuo_Video_Authentic CCTV security camera_567019781048918023.mp4",
+    "total_duration_sec": 10.12,
+    "total_frames_analyzed": 11,
+    "max_person_count": 446,
+    "avg_person_count": 421.36,
+    "overall_status": "CONGESTED",
+    "frames": [
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567019781048918023.mp4",
+        "time_sec": 0.0,
+        "timestamp": "00:00",
+        "frame_idx": 0,
+        "person_count": 429,
+        "raw_density_sum": 429.27,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567019781048918023.mp4",
+        "time_sec": 1.0,
+        "timestamp": "00:01",
+        "frame_idx": 24,
+        "person_count": 440,
+        "raw_density_sum": 439.72,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567019781048918023.mp4",
+        "time_sec": 2.0,
+        "timestamp": "00:02",
+        "frame_idx": 48,
+        "person_count": 434,
+        "raw_density_sum": 434.27,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567019781048918023.mp4",
+        "time_sec": 3.0,
+        "timestamp": "00:03",
+        "frame_idx": 72,
+        "person_count": 446,
+        "raw_density_sum": 445.54,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567019781048918023.mp4",
+        "time_sec": 4.0,
+        "timestamp": "00:04",
+        "frame_idx": 96,
+        "person_count": 426,
+        "raw_density_sum": 426.09,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567019781048918023.mp4",
+        "time_sec": 5.0,
+        "timestamp": "00:05",
+        "frame_idx": 120,
+        "person_count": 414,
+        "raw_density_sum": 413.83,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567019781048918023.mp4",
+        "time_sec": 6.0,
+        "timestamp": "00:06",
+        "frame_idx": 144,
+        "person_count": 414,
+        "raw_density_sum": 414.05,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567019781048918023.mp4",
+        "time_sec": 7.0,
+        "timestamp": "00:07",
+        "frame_idx": 168,
+        "person_count": 402,
+        "raw_density_sum": 402.39,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567019781048918023.mp4",
+        "time_sec": 8.0,
+        "timestamp": "00:08",
+        "frame_idx": 192,
+        "person_count": 401,
+        "raw_density_sum": 401.3,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567019781048918023.mp4",
+        "time_sec": 9.0,
+        "timestamp": "00:09",
+        "frame_idx": 216,
+        "person_count": 410,
+        "raw_density_sum": 410.45,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_01",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567019781048918023.mp4",
+        "time_sec": 10.0,
+        "timestamp": "00:10",
+        "frame_idx": 240,
+        "person_count": 419,
+        "raw_density_sum": 419.12,
+        "status": "CONGESTED"
+      }
+    ]
+  },
+  {
+    "zone_id": "ZONE_02",
+    "file_name": "Hailuo_Video_Authentic CCTV security camera_567022255407276034.mp4",
+    "video_path": "hard\\Hailuo_Video_Authentic CCTV security camera_567022255407276034.mp4",
+    "total_duration_sec": 10.12,
+    "total_frames_analyzed": 11,
+    "max_person_count": 452,
+    "avg_person_count": 437.27,
+    "overall_status": "CONGESTED",
+    "frames": [
+      {
+        "zone_id": "ZONE_02",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567022255407276034.mp4",
+        "time_sec": 0.0,
+        "timestamp": "00:00",
+        "frame_idx": 0,
+        "person_count": 430,
+        "raw_density_sum": 430.23,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_02",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567022255407276034.mp4",
+        "time_sec": 1.0,
+        "timestamp": "00:01",
+        "frame_idx": 24,
+        "person_count": 427,
+        "raw_density_sum": 426.99,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_02",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567022255407276034.mp4",
+        "time_sec": 2.0,
+        "timestamp": "00:02",
+        "frame_idx": 48,
+        "person_count": 443,
+        "raw_density_sum": 443.01,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_02",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567022255407276034.mp4",
+        "time_sec": 3.0,
+        "timestamp": "00:03",
+        "frame_idx": 72,
+        "person_count": 442,
+        "raw_density_sum": 442.03,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_02",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567022255407276034.mp4",
+        "time_sec": 4.0,
+        "timestamp": "00:04",
+        "frame_idx": 96,
+        "person_count": 438,
+        "raw_density_sum": 438.41,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_02",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567022255407276034.mp4",
+        "time_sec": 5.0,
+        "timestamp": "00:05",
+        "frame_idx": 120,
+        "person_count": 434,
+        "raw_density_sum": 434.0,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_02",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567022255407276034.mp4",
+        "time_sec": 6.0,
+        "timestamp": "00:06",
+        "frame_idx": 144,
+        "person_count": 430,
+        "raw_density_sum": 430.24,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_02",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567022255407276034.mp4",
+        "time_sec": 7.0,
+        "timestamp": "00:07",
+        "frame_idx": 168,
+        "person_count": 452,
+        "raw_density_sum": 451.59,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_02",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567022255407276034.mp4",
+        "time_sec": 8.0,
+        "timestamp": "00:08",
+        "frame_idx": 192,
+        "person_count": 444,
+        "raw_density_sum": 444.28,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_02",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567022255407276034.mp4",
+        "time_sec": 9.0,
+        "timestamp": "00:09",
+        "frame_idx": 216,
+        "person_count": 441,
+        "raw_density_sum": 440.76,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_02",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567022255407276034.mp4",
+        "time_sec": 10.0,
+        "timestamp": "00:10",
+        "frame_idx": 240,
+        "person_count": 429,
+        "raw_density_sum": 428.57,
+        "status": "CONGESTED"
+      }
+    ]
+  },
+  {
+    "zone_id": "ZONE_03",
+    "file_name": "Hailuo_Video_Authentic CCTV security camera_567025815666667529.mp4",
+    "video_path": "hard\\Hailuo_Video_Authentic CCTV security camera_567025815666667529.mp4",
+    "total_duration_sec": 10.12,
+    "total_frames_analyzed": 11,
+    "max_person_count": 265,
+    "avg_person_count": 257.27,
+    "overall_status": "CAUTION",
+    "frames": [
+      {
+        "zone_id": "ZONE_03",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567025815666667529.mp4",
+        "time_sec": 0.0,
+        "timestamp": "00:00",
+        "frame_idx": 0,
+        "person_count": 242,
+        "raw_density_sum": 242.31,
+        "status": "CAUTION"
+      },
+      {
+        "zone_id": "ZONE_03",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567025815666667529.mp4",
+        "time_sec": 1.0,
+        "timestamp": "00:01",
+        "frame_idx": 24,
+        "person_count": 261,
+        "raw_density_sum": 260.78,
+        "status": "CAUTION"
+      },
+      {
+        "zone_id": "ZONE_03",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567025815666667529.mp4",
+        "time_sec": 2.0,
+        "timestamp": "00:02",
+        "frame_idx": 48,
+        "person_count": 255,
+        "raw_density_sum": 254.52,
+        "status": "CAUTION"
+      },
+      {
+        "zone_id": "ZONE_03",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567025815666667529.mp4",
+        "time_sec": 3.0,
+        "timestamp": "00:03",
+        "frame_idx": 72,
+        "person_count": 243,
+        "raw_density_sum": 243.42,
+        "status": "CAUTION"
+      },
+      {
+        "zone_id": "ZONE_03",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567025815666667529.mp4",
+        "time_sec": 4.0,
+        "timestamp": "00:04",
+        "frame_idx": 96,
+        "person_count": 261,
+        "raw_density_sum": 260.52,
+        "status": "CAUTION"
+      },
+      {
+        "zone_id": "ZONE_03",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567025815666667529.mp4",
+        "time_sec": 5.0,
+        "timestamp": "00:05",
+        "frame_idx": 120,
+        "person_count": 260,
+        "raw_density_sum": 260.18,
+        "status": "CAUTION"
+      },
+      {
+        "zone_id": "ZONE_03",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567025815666667529.mp4",
+        "time_sec": 6.0,
+        "timestamp": "00:06",
+        "frame_idx": 144,
+        "person_count": 264,
+        "raw_density_sum": 263.89,
+        "status": "CAUTION"
+      },
+      {
+        "zone_id": "ZONE_03",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567025815666667529.mp4",
+        "time_sec": 7.0,
+        "timestamp": "00:07",
+        "frame_idx": 168,
+        "person_count": 256,
+        "raw_density_sum": 256.23,
+        "status": "CAUTION"
+      },
+      {
+        "zone_id": "ZONE_03",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567025815666667529.mp4",
+        "time_sec": 8.0,
+        "timestamp": "00:08",
+        "frame_idx": 192,
+        "person_count": 265,
+        "raw_density_sum": 264.65,
+        "status": "CAUTION"
+      },
+      {
+        "zone_id": "ZONE_03",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567025815666667529.mp4",
+        "time_sec": 9.0,
+        "timestamp": "00:09",
+        "frame_idx": 216,
+        "person_count": 261,
+        "raw_density_sum": 260.61,
+        "status": "CAUTION"
+      },
+      {
+        "zone_id": "ZONE_03",
+        "file_name": "Hailuo_Video_Authentic CCTV security camera_567025815666667529.mp4",
+        "time_sec": 10.0,
+        "timestamp": "00:10",
+        "frame_idx": 240,
+        "person_count": 262,
+        "raw_density_sum": 261.8,
+        "status": "CAUTION"
+      }
+    ]
+  },
+  {
+    "zone_id": "ZONE_04",
+    "file_name": "Hailuo_Video_High-angle CCTV surveillance c_567010471262724101.mp4",
+    "video_path": "hard\\Hailuo_Video_High-angle CCTV surveillance c_567010471262724101.mp4",
+    "total_duration_sec": 10.12,
+    "total_frames_analyzed": 11,
+    "max_person_count": 415,
+    "avg_person_count": 353.27,
+    "overall_status": "CONGESTED",
+    "frames": [
+      {
+        "zone_id": "ZONE_04",
+        "file_name": "Hailuo_Video_High-angle CCTV surveillance c_567010471262724101.mp4",
+        "time_sec": 0.0,
+        "timestamp": "00:00",
+        "frame_idx": 0,
+        "person_count": 415,
+        "raw_density_sum": 414.6,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_04",
+        "file_name": "Hailuo_Video_High-angle CCTV surveillance c_567010471262724101.mp4",
+        "time_sec": 1.0,
+        "timestamp": "00:01",
+        "frame_idx": 24,
+        "person_count": 412,
+        "raw_density_sum": 411.58,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_04",
+        "file_name": "Hailuo_Video_High-angle CCTV surveillance c_567010471262724101.mp4",
+        "time_sec": 2.0,
+        "timestamp": "00:02",
+        "frame_idx": 48,
+        "person_count": 401,
+        "raw_density_sum": 401.18,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_04",
+        "file_name": "Hailuo_Video_High-angle CCTV surveillance c_567010471262724101.mp4",
+        "time_sec": 3.0,
+        "timestamp": "00:03",
+        "frame_idx": 72,
+        "person_count": 384,
+        "raw_density_sum": 384.48,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_04",
+        "file_name": "Hailuo_Video_High-angle CCTV surveillance c_567010471262724101.mp4",
+        "time_sec": 4.0,
+        "timestamp": "00:04",
+        "frame_idx": 96,
+        "person_count": 347,
+        "raw_density_sum": 346.89,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_04",
+        "file_name": "Hailuo_Video_High-angle CCTV surveillance c_567010471262724101.mp4",
+        "time_sec": 5.0,
+        "timestamp": "00:05",
+        "frame_idx": 120,
+        "person_count": 354,
+        "raw_density_sum": 354.31,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_04",
+        "file_name": "Hailuo_Video_High-angle CCTV surveillance c_567010471262724101.mp4",
+        "time_sec": 6.0,
+        "timestamp": "00:06",
+        "frame_idx": 144,
+        "person_count": 338,
+        "raw_density_sum": 338.16,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_04",
+        "file_name": "Hailuo_Video_High-angle CCTV surveillance c_567010471262724101.mp4",
+        "time_sec": 7.0,
+        "timestamp": "00:07",
+        "frame_idx": 168,
+        "person_count": 314,
+        "raw_density_sum": 313.75,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_04",
+        "file_name": "Hailuo_Video_High-angle CCTV surveillance c_567010471262724101.mp4",
+        "time_sec": 8.0,
+        "timestamp": "00:08",
+        "frame_idx": 192,
+        "person_count": 309,
+        "raw_density_sum": 308.71,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_04",
+        "file_name": "Hailuo_Video_High-angle CCTV surveillance c_567010471262724101.mp4",
+        "time_sec": 9.0,
+        "timestamp": "00:09",
+        "frame_idx": 216,
+        "person_count": 309,
+        "raw_density_sum": 308.53,
+        "status": "CONGESTED"
+      },
+      {
+        "zone_id": "ZONE_04",
+        "file_name": "Hailuo_Video_High-angle CCTV surveillance c_567010471262724101.mp4",
+        "time_sec": 10.0,
+        "timestamp": "00:10",
+        "frame_idx": 240,
+        "person_count": 303,
+        "raw_density_sum": 303.19,
+        "status": "CONGESTED"
+      }
+    ]
+  }
+]
