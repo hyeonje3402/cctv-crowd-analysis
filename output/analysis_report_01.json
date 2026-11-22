@@ -2,7 +2,7 @@
   {
     "zone_id": "ZONE_01",
     "file_name": "Hailuo_Video_Authentic CCTV footage, high a_567046910830706688.mp4",
-    "video_path": "videos\\Hailuo_Video_Authentic CCTV footage, high a_567046910830706688.mp4",
+    "video_path": "video/Hailuo_Video_Authentic CCTV footage, high a_567046910830706688.mp4",
     "total_duration_sec": 10.12,
     "total_frames_analyzed": 11,
     "max_person_count": 50,
@@ -124,7 +124,7 @@
   {
     "zone_id": "ZONE_02",
     "file_name": "Hailuo_Video_Authentic CCTV security camera_567019781048918023.mp4",
-    "video_path": "videos\\Hailuo_Video_Authentic CCTV security camera_567019781048918023.mp4",
+    "video_path": "video/Hailuo_Video_Authentic CCTV security camera_567019781048918023.mp4",
     "total_duration_sec": 10.12,
     "total_frames_analyzed": 11,
     "max_person_count": 446,
@@ -246,7 +246,7 @@
   {
     "zone_id": "ZONE_03",
     "file_name": "Hailuo_Video_Authentic CCTV security camera_567022255407276034.mp4",
-    "video_path": "videos\\Hailuo_Video_Authentic CCTV security camera_567022255407276034.mp4",
+    "video_path": "video/Hailuo_Video_Authentic CCTV security camera_567022255407276034.mp4",
     "total_duration_sec": 10.12,
     "total_frames_analyzed": 11,
     "max_person_count": 452,
@@ -368,7 +368,7 @@
   {
     "zone_id": "ZONE_04",
     "file_name": "Hailuo_Video_Authentic CCTV security camera_567025815666667529.mp4",
-    "video_path": "videos\\Hailuo_Video_Authentic CCTV security camera_567025815666667529.mp4",
+    "video_path": "video/Hailuo_Video_Authentic CCTV security camera_567025815666667529.mp4",
     "total_duration_sec": 10.12,
     "total_frames_analyzed": 11,
     "max_person_count": 265,
@@ -490,7 +490,7 @@
   {
     "zone_id": "ZONE_05",
     "file_name": "Hailuo_Video_CCTV footage, high angle wide _567327370181967880.mp4",
-    "video_path": "videos\\Hailuo_Video_CCTV footage, high angle wide _567327370181967880.mp4",
+    "video_path": "video/Hailuo_Video_CCTV footage, high angle wide _567327370181967880.mp4",
     "total_duration_sec": 10.12,
     "total_frames_analyzed": 11,
     "max_person_count": 52,
@@ -612,7 +612,7 @@
   {
     "zone_id": "ZONE_06",
     "file_name": "Hailuo_Video_CCTV footage, perfectly fixed _567335087399391232.mp4",
-    "video_path": "videos\\Hailuo_Video_CCTV footage, perfectly fixed _567335087399391232.mp4",
+    "video_path": "video/Hailuo_Video_CCTV footage, perfectly fixed _567335087399391232.mp4",
     "total_duration_sec": 10.12,
     "total_frames_analyzed": 11,
     "max_person_count": 371,
@@ -734,7 +734,7 @@
   {
     "zone_id": "ZONE_07",
     "file_name": "Hailuo_Video_High-angle CCTV surveillance c_567010471262724101.mp4",
-    "video_path": "videos\\Hailuo_Video_High-angle CCTV surveillance c_567010471262724101.mp4",
+    "video_path": "video/Hailuo_Video_High-angle CCTV surveillance c_567010471262724101.mp4",
     "total_duration_sec": 10.12,
     "total_frames_analyzed": 11,
     "max_person_count": 415,
@@ -856,7 +856,7 @@
   {
     "zone_id": "ZONE_08",
     "file_name": "Hailuo_Video_Perfectly static high-angle ca_567359660664696841.mp4",
-    "video_path": "videos\\Hailuo_Video_Perfectly static high-angle ca_567359660664696841.mp4",
+    "video_path": "video/Hailuo_Video_Perfectly static high-angle ca_567359660664696841.mp4",
     "total_duration_sec": 10.12,
     "total_frames_analyzed": 11,
     "max_person_count": 7,
@@ -978,7 +978,7 @@
   {
     "zone_id": "ZONE_09",
     "file_name": "Hailuo_Video_Perfectly static high-angle ca_567372232243712008.mp4",
-    "video_path": "videos\\Hailuo_Video_Perfectly static high-angle ca_567372232243712008.mp4",
+    "video_path": "video/Hailuo_Video_Perfectly static high-angle ca_567372232243712008.mp4",
     "total_duration_sec": 10.12,
     "total_frames_analyzed": 11,
     "max_person_count": 560,

@@ -4,8 +4,8 @@ import json
 import urllib.request
 import cv2
 import torch
-import torch.nn as nn
 from torchvision import transforms
+from csrnet_model import CSRNet
 
 # ====================================================
 # [설정 및 혼잡도 임계값]
@@ -23,8 +23,9 @@ WEIGHTS_URL = "https://huggingface.co/muasifk/CSRNet/resolve/main/CSRNet.pth"
 WEIGHTS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "CSRNet.pth")
 
 WORKSPACE_DIR = os.path.dirname(os.path.abspath(__file__))
-VIDEOS_FOLDER = os.path.join(WORKSPACE_DIR, "videos")
-OUTPUT_JSON_FILE = os.path.join(WORKSPACE_DIR, "crowd_analysis.json")
+VIDEO_FOLDER = os.path.join(WORKSPACE_DIR, "video")
+OUTPUT_FOLDER = os.path.join(WORKSPACE_DIR, "output")
+OUTPUT_JSON_FILE = os.path.join(OUTPUT_FOLDER, "crowd_analysis.json")
 
 # ====================================================
 # [CCTV Zone ID 매핑 테이블]
@@ -44,47 +45,12 @@ def get_zone_id(video_name: str, index: int = 1) -> str:
 
 
 
-# ====================================================
-# [CSRNet 아키텍처 정의]
-# ====================================================
-def make_layers(cfg, in_channels=3, batch_norm=False, dilation=False):
-    d_rate = 2 if dilation else 1
-    layers = []
-    for v in cfg:
-        if v == 'M':
-            layers += [nn.MaxPool2d(kernel_size=2, stride=2)]
-        else:
-            conv2d = nn.Conv2d(in_channels, v, kernel_size=3, padding=d_rate, dilation=d_rate)
-            if batch_norm:
-                layers += [conv2d, nn.BatchNorm2d(v), nn.ReLU(inplace=True)]
-            else:
-                layers += [conv2d, nn.ReLU(inplace=True)]
-            in_channels = v
-    return nn.Sequential(*layers)
-
-class CSRNet(nn.Module):
-    def __init__(self):
-        super(CSRNet, self).__init__()
-        # VGG-16 기반 프론트엔드 (Conv 1_1 ~ Conv 4_3)
-        self.frontend_feat = [64, 64, 'M', 128, 128, 'M', 256, 256, 256, 'M', 512, 512, 512]
-        # Dilated Convolution 백엔드 (Dilation rate = 2)
-        self.backend_feat  = [512, 512, 512, 256, 128, 64]
-        self.frontend = make_layers(self.frontend_feat)
-        self.backend = make_layers(self.backend_feat, in_channels=512, dilation=True)
-        self.output_layer = nn.Conv2d(64, 1, kernel_size=1)
-
-    def forward(self, x):
-        x = self.frontend(x)
-        x = self.backend(x)
-        x = self.output_layer(x)
-        return x
-
 def load_csrnet_model(device: torch.device):
     """CSRNet 모델 및 가중치를 로드합니다 (미보유 시 자동 다운로드)."""
     if not os.path.exists(WEIGHTS_PATH):
         print(f"[*] CSRNet 가중치 파일 다운로드 중: {WEIGHTS_URL}")
         urllib.request.urlretrieve(WEIGHTS_URL, WEIGHTS_PATH)
-        print(f"[✔] 다운로드 완료: {WEIGHTS_PATH}")
+        print(f"[OK] 다운로드 완료: {WEIGHTS_PATH}")
 
     model = CSRNet()
     checkpoint = torch.load(WEIGHTS_PATH, map_location=device)
@@ -239,12 +205,13 @@ def main():
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     ])
 
-    analysis_results = analyze_folder("videos", VIDEOS_FOLDER, model, device, transform)
+    os.makedirs(OUTPUT_FOLDER, exist_ok=True)
+    analysis_results = analyze_folder("video", VIDEO_FOLDER, model, device, transform)
 
     with open(OUTPUT_JSON_FILE, "w", encoding="utf-8") as f:
         json.dump(analysis_results, f, ensure_ascii=False, indent=2)
 
-    print(f"\n[✔] videos 폴더 분석 완료 -> '{os.path.basename(OUTPUT_JSON_FILE)}' 저장 완료! (총 {len(analysis_results)}개 영상)")
+    print(f"\n[OK] video 폴더 분석 완료 -> '{OUTPUT_JSON_FILE}' 저장 완료! (총 {len(analysis_results)}개 영상)")
 
     print(f"\n==================================================")
     print(f"[★] 모든 CSRNet 인파 분석 작업이 완료되었습니다.")

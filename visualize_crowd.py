@@ -1,12 +1,13 @@
 import os
 import glob
 import time
+import json
 import cv2
 import numpy as np
 import torch
-import torch.nn as nn
 from torchvision import transforms
 from PIL import Image, ImageDraw, ImageFont
+from csrnet_model import CSRNet
 
 # ====================================================
 # [설정 및 혼잡도 임계값]
@@ -18,12 +19,20 @@ CAUTION_THRESHOLD = 150    # 150명 이상: 주의 (CAUTION)
 # 출력 및 분석 해상도 (2944x1248 원본 비율 약 2.35:1 유지)
 OUTPUT_WIDTH = 1280
 OUTPUT_HEIGHT = 544
+MODEL_INPUT_WIDTH = 896
+MODEL_INPUT_HEIGHT = 384
+INFERENCE_INTERVAL_FRAMES = 24  # 24 fps video: refresh the model estimate once per second
 
 # 모델 가중치 경로
 WORKSPACE_DIR = os.path.dirname(os.path.abspath(__file__))
 WEIGHTS_PATH = os.path.join(WORKSPACE_DIR, "CSRNet.pth")
-VIDEOS_FOLDER = os.path.join(WORKSPACE_DIR, "videos")
-OUTPUT_VIDEO_PATH = os.path.join(WORKSPACE_DIR, "crowd_result_video.mp4")
+VIDEO_FOLDER = os.path.join(WORKSPACE_DIR, "video")
+OUTPUT_FOLDER = os.path.join(WORKSPACE_DIR, "output")
+OUTPUT_VIDEO_PATH = os.path.join(OUTPUT_FOLDER, "csrnet_video_analysis.mp4")
+ROI_CONFIG_PATH = os.path.join(WORKSPACE_DIR, "roi_config.json")
+
+with open(ROI_CONFIG_PATH, "r", encoding="utf-8-sig") as f:
+    ROI_POLYGONS = json.load(f)
 
 
 # 한글 폰트 로드 (Windows 맑은 고딕)
@@ -36,39 +45,6 @@ def get_font(size: int):
         return ImageFont.truetype(FONT_PATH, size)
     except Exception:
         return ImageFont.load_default()
-
-# ====================================================
-# [CSRNet 아키텍처 정의]
-# ====================================================
-def make_layers(cfg, in_channels=3, batch_norm=False, dilation=False):
-    d_rate = 2 if dilation else 1
-    layers = []
-    for v in cfg:
-        if v == 'M':
-            layers += [nn.MaxPool2d(kernel_size=2, stride=2)]
-        else:
-            conv2d = nn.Conv2d(in_channels, v, kernel_size=3, padding=d_rate, dilation=d_rate)
-            if batch_norm:
-                layers += [conv2d, nn.BatchNorm2d(v), nn.ReLU(inplace=True)]
-            else:
-                layers += [conv2d, nn.ReLU(inplace=True)]
-            in_channels = v
-    return nn.Sequential(*layers)
-
-class CSRNet(nn.Module):
-    def __init__(self):
-        super(CSRNet, self).__init__()
-        self.frontend_feat = [64, 64, 'M', 128, 128, 'M', 256, 256, 256, 'M', 512, 512, 512]
-        self.backend_feat  = [512, 512, 512, 256, 128, 64]
-        self.frontend = make_layers(self.frontend_feat)
-        self.backend = make_layers(self.backend_feat, in_channels=512, dilation=True)
-        self.output_layer = nn.Conv2d(64, 1, kernel_size=1)
-
-    def forward(self, x):
-        x = self.frontend(x)
-        x = self.backend(x)
-        x = self.output_layer(x)
-        return x
 
 def load_csrnet(device: torch.device):
     """CSRNet 모델 로드"""
@@ -116,6 +92,34 @@ def apply_density_heatmap(frame_bgr: np.ndarray, density_map: np.ndarray) -> np.
     alpha = 0.55 * mask
     blended = (frame_bgr * (1.0 - alpha) + heatmap * alpha).astype(np.uint8)
     return blended
+
+def build_roi_masks(video_name: str, density_shape: tuple, frame_shape: tuple):
+    """Create density-map and output-frame masks from normalized per-video polygons."""
+    polygons = ROI_POLYGONS.get(video_name)
+    if not polygons:
+        return None, None, None
+
+    density_h, density_w = density_shape
+    frame_h, frame_w = frame_shape[:2]
+    density_mask = np.zeros((density_h, density_w), dtype=np.uint8)
+    frame_mask = np.zeros((frame_h, frame_w), dtype=np.uint8)
+    for polygon in polygons:
+        points = np.asarray([
+            [round(float(x) * (frame_w - 1)), round(float(y) * (frame_h - 1))]
+            for x, y in polygon
+        ], dtype=np.int32)
+        density_points = np.asarray([
+            [round(float(x) * (density_w - 1)), round(float(y) * (density_h - 1))]
+            for x, y in polygon
+        ], dtype=np.int32)
+        cv2.fillPoly(frame_mask, [points], 255)
+        cv2.fillPoly(density_mask, [density_points], 1)
+
+    # Draw only the outside edge of the combined ROI so touching walkways do not
+    # create distracting internal lines across the pedestrian path.
+    frame_contours, _ = cv2.findContours(frame_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    return density_mask, frame_mask, frame_contours
 
 def draw_hud_overlay(frame_bgr: np.ndarray, current_count: float, max_count: float, avg_count: float, fps_val: float) -> np.ndarray:
     """
@@ -195,7 +199,6 @@ def process_folder(folder_key: str, folder_path: str, output_path: str, model: C
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     writer = cv2.VideoWriter(output_path, fourcc, target_fps, (OUTPUT_WIDTH, OUTPUT_HEIGHT))
 
-    all_counts = []
     total_frames = 0
 
     for v_idx, v_path in enumerate(video_files, 1):
@@ -204,9 +207,12 @@ def process_folder(folder_key: str, folder_path: str, output_path: str, model: C
         v_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
         print(f"\n[▶] ({v_idx}/{len(video_files)}) 렌더링 중: {v_name} (총 {v_frames}프레임)")
 
+        all_counts = []
         frame_idx = 0
         last_density = None
         last_count = 0.0
+        roi_frame_mask = None
+        roi_contours = None
 
         while True:
             ret, frame = cap.read()
@@ -216,20 +222,28 @@ def process_folder(folder_key: str, folder_path: str, output_path: str, model: C
             t_start = time.time()
             # 규격 해상도로 리사이즈
             resized = cv2.resize(frame, (OUTPUT_WIDTH, OUTPUT_HEIGHT), interpolation=cv2.INTER_AREA)
+            model_input = cv2.resize(resized, (MODEL_INPUT_WIDTH, MODEL_INPUT_HEIGHT), interpolation=cv2.INTER_AREA)
 
-            # 매 6프레임마다 CSRNet 밀도 맵 추론 (연산 속도 최적화 및 부드러운 히트맵 유지)
-            if frame_idx % 6 == 0 or last_density is None:
-                rgb = cv2.cvtColor(resized, cv2.COLOR_BGR2RGB)
+            # Update CSRNet once per second; reuse the estimate between inference frames.
+            if frame_idx % INFERENCE_INTERVAL_FRAMES == 0 or last_density is None:
+                rgb = cv2.cvtColor(model_input, cv2.COLOR_BGR2RGB)
                 img_tensor = transform(rgb).unsqueeze(0).to(device)
 
                 with torch.no_grad():
                     d_map = model(img_tensor)
-                    last_density = d_map.squeeze().cpu().numpy()
+                    raw_density = np.maximum(d_map.squeeze().cpu().numpy(), 0.0)
+                    density_mask, roi_frame_mask, roi_contours = build_roi_masks(
+                        v_name, raw_density.shape, resized.shape
+                    )
+                    last_density = raw_density if density_mask is None else raw_density * density_mask
                     last_count = float(last_density.sum())
                     all_counts.append(last_count)
 
             # 히트맵 합성
             heat_frame = apply_density_heatmap(resized, last_density)
+            if roi_frame_mask is not None:
+                heat_frame[roi_frame_mask == 0] = resized[roi_frame_mask == 0]
+                cv2.polylines(heat_frame, roi_contours, True, (40, 220, 255), 2, cv2.LINE_AA)
 
             # 통계값 계산
             max_c = max(all_counts) if all_counts else last_count
@@ -252,7 +266,7 @@ def process_folder(folder_key: str, folder_path: str, output_path: str, model: C
         cap.release()
 
     writer.release()
-    print(f"\n[✔] {folder_key} CSRNet 시각화 동영상 저장 완료! ({total_frames}프레임)")
+    print(f"\n[OK] {folder_key} CSRNet 시각화 동영상 저장 완료! ({total_frames}프레임)")
     print(f"    -> {output_path}")
 
 def main():
@@ -264,11 +278,17 @@ def main():
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     ])
 
-    process_folder("videos", VIDEOS_FOLDER, OUTPUT_VIDEO_PATH, model, device, transform)
+    os.makedirs(OUTPUT_FOLDER, exist_ok=True)
+    output_video_path = OUTPUT_VIDEO_PATH
+    suffix = 1
+    while os.path.exists(output_video_path):
+        output_video_path = os.path.join(OUTPUT_FOLDER, f"csrnet_video_analysis_{suffix:03d}.mp4")
+        suffix += 1
+    process_folder("video", VIDEO_FOLDER, output_video_path, model, device, transform)
 
     print(f"\n==================================================")
     print(f"[★] CSRNet 밀도 히트맵 시각화 통합 영상 생성이 완료되었습니다.")
-    print(f"    -> {OUTPUT_VIDEO_PATH}")
+    print(f"    -> {output_video_path}")
     print(f"==================================================")
 
 if __name__ == "__main__":

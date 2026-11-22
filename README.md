@@ -11,18 +11,19 @@
 | 시각화 | 분석 결과를 영상·그래픽으로 표현 |
 | 기술 스택 | Python, PyTorch, Torchvision, OpenCV, Ultralytics YOLO, NumPy, SciPy, Pillow |
 | 실행 형태 | 로컬 영상 파일을 처리하는 스크립트 |
-| 저장·배포 | 결과 JSON을 로컬에 저장. 서비스 API, DB, 클라우드 배포 설정은 없음 |
+| 저장·배포 | 결과를 로컬에 저장. 서비스 API, DB, 클라우드 배포 설정은 없음 |
 
 ## 분석 흐름
 
 ~~~mermaid
 flowchart LR
-    A[로컬 CCTV 영상] --> B{분석 스크립트 선택}
+    A[video/ 원본 CCTV 영상] --> B{분석 스크립트 선택}
     B --> C[CSRNet 밀도 맵·인원 추정]
     B --> D[YOLOv8 사람 검출·시간 샘플링]
     C --> E[혼잡 단계와 구역별 JSON]
     D --> E
     E --> F[시각화 스크립트]
+    F --> G[output/ 분석 결과]
 ~~~
 
 두 분석기는 서로 다른 모델과 혼잡도 임계값을 사용하므로 결과를 직접 같은 기준의 점수로 비교하지 않습니다.
@@ -33,11 +34,43 @@ flowchart LR
 - [설치·입력 영상·실행 방법](docs/development/README.md)
 - [결과 해석과 개선 로드맵](docs/roadmap/README.md)
 
-## 빠른 시작
+## 설치 및 모델 가중치
 
-~~~bash
+```bash
 pip install -r requirements.txt
-python analyze_crowd.py
-~~~
+```
 
-분석 대상 영상은 프로젝트 루트의 **videos/** 폴더에 준비합니다. 자세한 입력·출력 경로와 YOLO 배치 분석 명령은 [개발 문서](docs/development/README.md)를 참고하세요.
+- CSRNet 가중치는 `analyze_crowd.py` 실행 시 Hugging Face에서 자동으로 내려받거나 프로젝트 루트의 `CSRNet.pth`를 사용합니다.
+- YOLOv8 가중치는 Ultralytics에서 자동으로 내려받거나 사용 가능한 로컬 가중치를 사용합니다.
+- 대용량 모델 가중치 및 영상 파일은 `.gitignore`로 Git 추적에서 제외됩니다.
+
+## 영상 폴더 구조
+
+- `video/`: CSRNet·YOLO 분석 전 원본 영상만 보관합니다. 원활/혼잡 분류 폴더는 사용하지 않습니다.
+- `output/`: 분석 JSON, 결과 영상, 원본·결과 대응표를 저장합니다.
+- 통합한 기존 분석 결과 영상은 `analysis_result_NNN.mp4`이며, `output/video_manifest.csv`에서 원본 파일명, 결과 파일명, SHA-256을 확인할 수 있습니다.
+- 이후 `visualize_crowd.py`는 `csrnet_video_analysis.mp4`로 저장하고 같은 이름이 있으면 순번을 붙여 기존 영상을 보존합니다.
+- 같은 내용의 원본이 여러 폴더에 있으면 한 부만 `video/`에 두고, 중복 원본 정보는 매니페스트에 기록합니다.
+- 영상별 CSRNet ROI는 `roi_config.json`에 유지합니다. 카메라 구도가 바뀌면 ROI를 다시 지정해야 하며, ROI가 없는 영상은 전체 화면을 분석합니다.
+
+## 실행 방법
+
+### CSRNet 인원 분석
+
+```bash
+python analyze_crowd.py
+```
+
+### YOLOv8 배치 분석
+
+```bash
+python batch_crowd_analysis.py
+```
+
+### CSRNet 밀도 시각화
+
+```bash
+python visualize_crowd.py
+```
+
+세 스크립트는 `video/`의 MP4를 읽고 JSON 또는 시각화 결과를 `output/`에 저장합니다.

@@ -8,8 +8,9 @@ from ultralytics import YOLO
 # 1. 설정 및 파라미터
 # ----------------------------------------------------
 WORKSPACE_DIR = os.path.dirname(os.path.abspath(__file__))
-VIDEOS_FOLDER = os.path.join(WORKSPACE_DIR, "videos")
-OUTPUT_JSON_FILE = os.path.join(WORKSPACE_DIR, "yolo_crowd_analysis.json")
+VIDEO_FOLDER = os.path.join(WORKSPACE_DIR, "video")
+OUTPUT_FOLDER = os.path.join(WORKSPACE_DIR, "output")
+OUTPUT_JSON_FILE = os.path.join(OUTPUT_FOLDER, "yolo_crowd_analysis.json")
 
 # ====================================================
 # [CCTV Zone ID 매핑 테이블]
@@ -172,12 +173,13 @@ def analyze_folder(folder_name: str, folder_path: str, model: YOLO) -> list:
 def main():
     model = load_yolo_model()
 
-    analysis_results = analyze_folder("videos", VIDEOS_FOLDER, model)
+    os.makedirs(OUTPUT_FOLDER, exist_ok=True)
+    analysis_results = analyze_folder("video", VIDEO_FOLDER, model)
 
     with open(OUTPUT_JSON_FILE, "w", encoding="utf-8") as f:
         json.dump(analysis_results, f, ensure_ascii=False, indent=2)
 
-    print(f"\n[✔] videos 폴더 분석 완료 -> '{os.path.basename(OUTPUT_JSON_FILE)}' 저장 완료! (총 {len(analysis_results)}개 영상)")
+    print(f"\n[OK] video 폴더 분석 완료 -> '{OUTPUT_JSON_FILE}' 저장 완료! (총 {len(analysis_results)}개 영상)")
 
     print(f"\n==================================================")
     print(f"[★] 모든 일괄 분석 작업이 성공적으로 완료되었습니다.")

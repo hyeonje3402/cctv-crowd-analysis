@@ -15,17 +15,16 @@ ENV/
 *.onnx
 *.engine
 
-# Video datasets and generated output videos
-videos/
-ez/
-hard/
+# Original input videos and generated analysis results
+video/
+output/*.mp4
+output/*.avi
+output/*.mov
+output/*.mkv
 *.mp4
 *.avi
 *.mov
 *.mkv
-
-# Output results (keep or ignore, ignoring heavy generated videos)
-*_result_video.mp4
 
 # IDE / OS
 .vscode/
