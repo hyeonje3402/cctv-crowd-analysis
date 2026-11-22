@@ -132,7 +132,7 @@ def draw_hud_overlay(frame_bgr: np.ndarray, current_count: float, max_count: flo
     top_bar_height = 54
     overlay = frame_bgr.copy()
     cv2.rectangle(overlay, (0, 0), (w, top_bar_height), (12, 12, 16), -1)
-    
+
     # 2. 하단 정보 바 (반투명)
     bot_bar_height = 30
     cv2.rectangle(overlay, (0, h - bot_bar_height), (w, h), (10, 10, 14), -1)
