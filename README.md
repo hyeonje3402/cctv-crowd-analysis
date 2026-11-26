@@ -34,6 +34,15 @@ flowchart LR
 - [설치·입력 영상·실행 방법](docs/development/README.md)
 - [결과 해석과 개선 로드맵](docs/roadmap/README.md)
 
+## 실제 추론 결과 화면
+
+기존 CSRNet 분석 결과 영상에서 추출한 대표 프레임입니다. 원본 입력은 테스트용 생성 영상이며, 화면에는 인원 추정치·밀도 맵·ROI 구역·혼잡 단계가 표시됩니다.
+
+![CSRNet 인원 추정과 밀도 맵](docs/screenshots/cctv-01-csrnet-density-map.jpg)
+
+- ROI 구역별 혼잡도: [실행 화면](docs/screenshots/cctv-02-roi-zone-density.jpg)
+- 보행로 혼잡 단계와 인원 추정: [실행 화면](docs/screenshots/cctv-03-underpass-congestion.jpg)
+
 ## 설치 및 모델 가중치
 
 ```bash
